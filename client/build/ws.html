@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Server stats</title>
+    <style>
+      table, td {
+        border: 1px solid #333;
+      }
+
+      thead {
+        background-color: #333;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Server stats22</h1>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">Memory usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RSS</td>
+          <td id="rss"></td>
+        </tr>
+        <tr>
+          <td>Heap total</td>
+          <td id="heapTotal"></td>
+        </tr>
+        <tr>
+          <td>Heap used</td>
+          <td id="heapUsed"></td>
+        </tr>
+        <tr>
+          <td>External</td>
+          <td id="external"></td>
+        </tr>
+      </tbody>
+    </table>
+    <input type="text" id="msg" />
+    <div id="messages"></div>
+    <script>
+      (function() {
+        const rss = document.getElementById('rss');
+        const heapTotal = document.getElementById('heapTotal');
+        const heapUsed = document.getElementById('heapUsed');
+        const external = document.getElementById('external');
+        // const ws = new WebSocket(`ws://localhost:8080`);
+        
+        console.log("location", location);
+        // const wsOrigin = () => {
+        //   if (location.protocol == 'http:'){
+        //     return `ws://${location.hostname}:3000/echo`
+        //   }else {
+        //     return `wss://${location.hostname}:3000`
+        //   }
+        // }
+        // const url = wsOrigin();
+        
+        let host = location.origin.replace(/^http/, 'ws')
+        console.log("w222s url ", host);
+        const ws = new WebSocket(host);
+        // const ws = new WebSocket(`ws://${wsHost()}`);
+
+        ws.onmessage = function(event) {
+          console.log("onmessageonmessage", event);
+          // const data = JSON.parse(event.data);
+
+          document.getElementById('messages').insertAdjacentText("beforeend", event.data);
+          
+          // rss.textContent = data.rss;
+          // heapTotal.textContent = data.heapTotal;
+          // heapUsed.textContent = data.heapUsed;
+          // external.textContent = data.external;
+        };
+
+        ws.onopen = function (event){
+          console.log("onopenonopenevent", event );
+          ws.send('open something');
+        };
+
+        // ws.on('message', function message(data) {
+        //   console.log('received: %s', data);
+        // });
+
+
+        document.getElementById('msg').addEventListener("keyup", function(){
+          
+          const msg = document.getElementById('msg').value;
+          console.log("onkeyup", msg);
+          ws.send(msg);
+        });
+      })();
+    </script>
+  </body>
+</html>
