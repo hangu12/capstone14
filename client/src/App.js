@@ -29,19 +29,39 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="some-wrapper">
-        {
-          /*
-          Link example.
-          */
-        }
-        <Link to="list">
-          list
-        </Link>
-        <Link to="detail">
-          Detail
-        </Link>
-
+       <nav className="navbar">
+        <div className="navbar__container">
+          <a href="/" id="navbar__logo">NDWEBSITE</a>
+          <div className="navbar__toggle" id="mobile-menu">
+              <span className="bar"></span>
+              <span className="bar"></span>
+              <span className="bar"></span>
+          </div>
+          <ul className="navbar__menu">
+              <li className="navbar__item">
+                <Link to="list" className="navbar__links">
+                  Items
+                </Link>
+              </li>
+              <li className="navbar__item">
+                <Link to="detail" className="navbar__links">
+                  Detail
+                </Link>
+              </li>
+              <li className="navbar__item">
+                <Link to="about" className="navbar__links">
+                  About
+                </Link>
+              </li>
+              <li className="navbar__btn">
+                  <a href="/" className="button">
+                      Sign Up
+                  </a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="main">
         <Routes>
           <Route path="list" element={ <List /> } />
           <Route path="detail" element={ <Detail /> } />

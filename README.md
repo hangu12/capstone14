@@ -27,6 +27,12 @@ say yes, then you will be using 3001 port for client.
 
 go to localhost:3001
 
+## Deploy to heroku 
+```
+npm run build 
+git push heroku master
+```
+
 ## Due date 
 - Notify team if you have any issues.
 - Support and move on after due date. 
