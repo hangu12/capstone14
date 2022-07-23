@@ -1,0 +1,81 @@
+.items {
+  margin: 20px 0;
+}
+.items .list-item {
+  width: 230px;
+  padding: 0 8px;
+  margin: 10px 0;
+}
+.items .list-item .price {
+  font-size: 1.2rem;
+}
+.items h3 {
+  padding: 4px 0;
+}
+.items a {
+  color: #000;
+}
+.availability {
+  position: absolute;
+  width: 120px;
+  height: 36px;
+  top: 20px;
+  right: 0;
+  background-color: #00802feb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+} 
+.detail .availability p {
+  font-size: 1.1rem;
+  color: white;
+  text-transform: uppercase;
+}
+.item .rsp-wrap {
+  align-items: inherit;
+}
+.item .box {
+  width: 50%;
+  padding: 20px 20px;
+}
+.item .desc {
+  font-size: .9rem;
+  color: gray;
+  padding: 4px 0;
+}
+.item .price {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.item .seller {
+  font-size: 1.1rem;
+}
+.item .control {
+  /* font-size: 2rem; */
+}
+.item button {
+  width: 40px;
+  height: 40px;
+  font-size: 2rem;
+  background-color: transparent;
+  border: none;
+}
+.item .fa-heart {
+  color: #ececec;
+}
+.item .fa-heart.active {
+  color: #ff3600;
+}
+
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .items .list-item {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .item .box {
+    width: 100%;
+  }
+}

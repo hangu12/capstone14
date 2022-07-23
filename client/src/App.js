@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom'
 import {
   BrowserRouter,
   Routes,
@@ -10,21 +9,24 @@ import {
 
 import logo from './logo.svg';
 import './App.css';
+import './items.css'
+
 import Hello from './Hello';
-import Detail from './Detail';
+import Items from './Items';
+import Item from './Item';
 // import World from './World';
 
 function App() {
   console.log("App rendering");
 
   const About = (props) => {
-    return <div>About</div>
+    return (<div>About</div>)
   }
   const List = (props) => {
-    return <div>List</div>
+    return (<div>List</div>)
   }
   const Add = (props) => {
-    return <div>Add</div>
+    return (<div>Add</div>)
   }
 
   return (
@@ -39,13 +41,8 @@ function App() {
           </div>
           <ul className="navbar__menu">
               <li className="navbar__item">
-                <Link to="list" className="navbar__links">
+                <Link to="items" className="navbar__links">
                   Items
-                </Link>
-              </li>
-              <li className="navbar__item">
-                <Link to="detail" className="navbar__links">
-                  Detail
                 </Link>
               </li>
               <li className="navbar__item">
@@ -61,13 +58,15 @@ function App() {
           </ul>
         </div>
       </nav>
-      <div class="main">
-        <Routes>
-          <Route path="list" element={ <List /> } />
-          <Route path="detail" element={ <Detail /> } />
-          <Route path="about" element={ <About /> } />
-          <Route path="add" element={ <Add /> } />
-        </Routes>
+      <div className="wrapper">
+        <main>
+          <Routes>
+            <Route path="items" element={ <Items /> } />
+            <Route path="items/:id" element={ <Item /> } />
+            <Route path="about" element={ <About /> } />
+            <Route path="add" element={ <Add /> } />
+          </Routes>
+        </main>
       </div>
     </BrowserRouter>
   )
