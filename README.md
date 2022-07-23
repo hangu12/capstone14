@@ -12,9 +12,9 @@ cd capstone14
 
 Probably, you don't have to run npm install. I've already commit all the node_modules. 
 
-for dev, 
+for dev, (npm run dev is not work anymore)
 ```
-npm run dev
+npm start
 ```
 
 ```
@@ -27,29 +27,12 @@ say yes, then you will be using 3001 port for client.
 
 go to localhost:3001
 
-# Questions
-- Logo Design - Can we use Logo from internet or we have to make it? 
-
-# Decisions
-
-## Next Meeting Time 
-Thu 14 - 10:00 am on zoom, around 3pm on Whatsapp
-=> If anyone want to change this, let us know. 
-
 ## Due date 
 - Notify team if you have any issues.
 - Support and move on after due date. 
 
 
 ## Owner
-
-### Research and Proposal Assignment - Vishav, Nimesh help 
-Due 6:00pm on Monday.
-
-### Documentation - Nimesh lead 
-  - Backlog (when?)
-  - Sprint Burndown Chart  (When? how to submit?)
-  - Progress Report - each day
  
 ### Code
 Front-end: Hangu, Nimesh
