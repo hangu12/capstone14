@@ -12,6 +12,8 @@ export const Item = (props) => {
   useEffect(() => {
     console.log("Item mounted");
 
+    https://images.pexels.com/photos/2349211/pexels-photo-2349211.jpeg?auto=compress&cs=tinysrgb&w=600
+    
     /* api */
 
     setItem({
