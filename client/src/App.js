@@ -6,7 +6,6 @@ import {
   Link
 } from "react-router-dom";
 
-
 import logo from './logo.svg';
 import './App.css';
 import './items.css'
@@ -14,14 +13,12 @@ import './items.css'
 import Hello from './Hello';
 import Items from './Items';
 import Item from './Item';
+import About from './About';
 // import World from './World';
 
 function App() {
   console.log("App rendering");
 
-  const About = (props) => {
-    return (<div>About</div>)
-  }
   const List = (props) => {
     return (<div>List</div>)
   }
@@ -31,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
-       <nav className="navbar">
+      <nav className="navbar">
         <div className="navbar__container">
           <a href="/" id="navbar__logo">NDWEBSITE</a>
           <div className="navbar__toggle" id="mobile-menu">
