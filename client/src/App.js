@@ -6,15 +6,18 @@ import {
   Link
 } from "react-router-dom";
 
-import logo from './logo.svg';
 import './App.css';
 import './home.css'
 import './items.css'
+import './chatroom.css'
+import './simplelist.css'
   
 import Home from './Home';
 import Items from './Items';
+import SimepleList from './SimepleList';
 import Item from './Item';
 import About from './About';
+import ChatRoom from './ChatRoom';
 
 function App() {
   console.log("App rendering");
@@ -65,6 +68,8 @@ function App() {
             <Route path="items/:id" element={ <Item /> } />
             <Route path="about" element={ <About /> } />
             <Route path="add" element={ <Add /> } />
+            <Route path="chatrooms/:id" element={ <ChatRoom /> } />
+            <Route path="my/items" element={ <SimepleList /> } />
           </Routes>
         </main>
       </div>

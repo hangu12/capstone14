@@ -1,0 +1,25 @@
+.simple-list {
+  max-width: 768px;
+  margin: 0 auto;
+}
+.simple-list li {
+  border-bottom: 1px solid #d5d5d5;
+  padding: 10px 0;
+}
+
+.simple-list .my-item h1, h2, h3 {
+  margin: 0;
+}
+.simple-list .my-item a {
+  color: #000;
+}
+.simple-list .my-item .fl {
+  justify-content: flex-start;
+  gap: 4px;
+}
+.simple-list .my-item .img-wrap {
+  width: 100px;
+  padding: 10px;
+}
+
+

@@ -17,8 +17,6 @@
 }
 .availability {
   position: absolute;
-  width: 120px;
-  height: 36px;
   top: 20px;
   right: 0;
   background-color: #00802feb;
@@ -26,11 +24,16 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-} 
-.detail .availability p {
-  font-size: 1.1rem;
   color: white;
   text-transform: uppercase;
+  font-size: .7rem;
+  width: 80px;
+  height: 18px;
+} 
+.detail .availability {
+  font-size: 1.1rem;
+  width: 120px;
+  height: 36px;
 }
 .item .rsp-wrap {
   align-items: inherit;
@@ -75,6 +78,14 @@
 }
 .swiper-pagination-bullet{
   background-color: #fff !important;
+}
+.msg-button {
+  width: 80%;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #ed3f01;
+  box-shadow: 2px 1px 2px #dadada;
+  border-radius: 8px;
 }
 
 /* Mobile */

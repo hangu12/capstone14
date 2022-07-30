@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
@@ -8,17 +9,53 @@ export const Item = (props) => {
   console.log("Item rendering");
   // const [wish, setWish] = useState(false);
   const [item, setItem] = useState(null);
+  let [searchParams, setSearchParams] = useSearchParams();
+
 
   useEffect(() => {
-    console.log("Item mounted");
+    
+    /*
+    API server CORS setting? 
+    https://www.codegrepper.com/code-examples/javascript/how+to+disable+cors+in+node+js
+     */
 
-    /* api */
 
-    setItem({
-      name: 'Duck Stuffy',
-      wish: false
-    })
+    const callApi = searchParams.get("api");
+    if (callApi){
+      const url = "https://usedproduct.herokuapp.com/api/product/62d8471c231c8aa8fb24b9c4";
+
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("fetcheddata is ", data);
   
+          setItem({
+            name: data.name,
+            price: data.price,
+            image: data.image,
+            description: data.description,
+            seller: data.seller,
+            available: data.available,
+            wish: false
+          })
+        });
+
+    }else {
+      setItem({
+        name: 'Stuffy',
+        price: '$40',
+        description: 'data.description',
+        seller: 'data.seller',
+        available: true,
+        wish: false
+      })
+    }
+    
+  
+
+  
+
+
     return () => {
       console.log("Item unmounted");
     }
@@ -70,7 +107,7 @@ export const Item = (props) => {
             <h1>{ item.name} </h1>
           </div>
           <div className="pd-tb desc">
-            <p>Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction.</p>
+            <p>{item.description}</p>
           </div>
           <div className="pd-tb seller"><a href="#">John Doe</a></div>    
           <div className="fl control">
@@ -80,7 +117,12 @@ export const Item = (props) => {
                 <FontAwesomeIcon icon={faHeart} className={wishClass()} />
               </button>
             </div>
-          </div>    
+          </div>  
+          <div className="mg-tb pd-tb">
+            <Link to="/chatrooms/1" className="msg-button">
+                Message to Seller
+            </Link> 
+          </div>  
         </div>
       </div>
       }
