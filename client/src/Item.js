@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,6 +9,8 @@ export const Item = (props) => {
   console.log("Item rendering");
   // const [wish, setWish] = useState(false);
   const [item, setItem] = useState(null);
+  let [searchParams, setSearchParams] = useSearchParams();
+
 
   useEffect(() => {
     
@@ -16,33 +18,42 @@ export const Item = (props) => {
     API server CORS setting? 
     https://www.codegrepper.com/code-examples/javascript/how+to+disable+cors+in+node+js
      */
-    // const url = "https://usedproduct.herokuapp.com/api/product/62d8471c231c8aa8fb24b9c4";
 
-    // fetch(url)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("fetcheddata is ", data);
 
-    //     setItem({
-    //       name: data.name,
-    //       price: data.price,
-    //       image: data.image,
-    //       description: data.description,
-    //       seller: data.seller,
-    //       available: data.available,
-    //       wish: false
-    //     })
-    //   });
+    const callApi = searchParams.get("api");
+    if (callApi){
+      const url = "https://usedproduct.herokuapp.com/api/product/62d8471c231c8aa8fb24b9c4";
+
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("fetcheddata is ", data);
+  
+          setItem({
+            name: data.name,
+            price: data.price,
+            image: data.image,
+            description: data.description,
+            seller: data.seller,
+            available: data.available,
+            wish: false
+          })
+        });
+
+    }else {
+      setItem({
+        name: 'Stuffy',
+        price: '$40',
+        description: 'data.description',
+        seller: 'data.seller',
+        available: true,
+        wish: false
+      })
+    }
+    
   
 
-    setItem({
-      name: 'Stuffy',
-      price: '$40',
-      description: 'data.description',
-      seller: 'data.seller',
-      available: true,
-      wish: false
-    })
+  
 
 
     return () => {
