@@ -15,7 +15,7 @@ export const About = (props) => {
       {
         /* 
           Nimesh, try your html here. 
-          just change class to className. 
+     
           
         */
       }
