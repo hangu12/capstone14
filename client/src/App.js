@@ -27,25 +27,12 @@ function App() {
     return (<div>Add</div>)
   }
 
-  const bgClass = () => {
-    if (window.location.pathname == '/about'){
-      return 'about-bg'
-    }
-    return '';
-  }
-  const mainBgClass = () => {
-    if (window.location.pathname == '/about'){
-      return 'bg'
-    }
-    return '';
-  }
-
   return (
     <BrowserRouter>
-      <div className={`body-wrap ${bgClass()}`}>
+      <div>
         <nav className="navbar">
           <div className="navbar__container">
-            <a href="/" id="navbar__logo">NDWEBSITE</a>
+            <a href="/" id="navbar__logo">JOONG GO</a>
             <div className="navbar__toggle" id="mobile-menu">
                 <span className="bar"></span>
                 <span className="bar"></span>
@@ -76,7 +63,7 @@ function App() {
           </div>
         </nav>
         <div className="wrapper">
-          <main className={mainBgClass()}>
+          <main>
             <Routes>
               <Route path="/" element={ <Home /> } />
               <Route path="items" element={ <Items /> } />
