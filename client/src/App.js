@@ -3,8 +3,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link,
-  useLocation
+  Link
 } from "react-router-dom";
 
 import './App.css';
@@ -23,19 +22,27 @@ import ChatRoom from './ChatRoom';
 
 function App() {
   console.log("App rendering");
-  // const location = useLocation();
 
   const Add = (props) => {
     return (<div>Add</div>)
   }
 
-  // const bgClass = () => {
-  //   console.log("location.pathname", location.href);
-  // }
+  const bgClass = () => {
+    if (window.location.pathname == '/about'){
+      return 'about-bg'
+    }
+    return '';
+  }
+  const mainBgClass = () => {
+    if (window.location.pathname == '/about'){
+      return 'bg'
+    }
+    return '';
+  }
 
   return (
     <BrowserRouter>
-      <div className={`body-wrap`}>
+      <div className={`body-wrap ${bgClass()}`}>
         <nav className="navbar">
           <div className="navbar__container">
             <a href="/" id="navbar__logo">NDWEBSITE</a>
@@ -69,7 +76,7 @@ function App() {
           </div>
         </nav>
         <div className="wrapper">
-          <main>
+          <main className={mainBgClass()}>
             <Routes>
               <Route path="/" element={ <Home /> } />
               <Route path="items" element={ <Items /> } />
