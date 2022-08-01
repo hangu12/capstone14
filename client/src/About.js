@@ -21,7 +21,7 @@ export const About = (props) => {
                 </nav>
      
                 <h1>Contact Us</h1>
-                <p>Our Office time is 8:00 A.M. to 5:00 P.M. - Monday To Friday</p><br>
+                <p>Our Office time is 8:00 A.M. to 5:00 P.M. - Monday To Friday</p><br/>
                 <P>Please Fill Information Below So that We can Contact You ASAP !!!</P>
             </header>
             <div className="content">
@@ -30,8 +30,8 @@ export const About = (props) => {
                         <i className="fa fa-map-marker fa-2x" aria-hidden="true"></i>
                         <h2>address</h2>
                         <p>
-                            2969 kingsway Drive. <br>
-                            Kitchener. <br>
+                            2969 kingsway Drive. <br/>
+                            Kitchener. <br/>
                             N2C2H7
                         </p>
                     </section>
@@ -54,12 +54,12 @@ export const About = (props) => {
             <div className="form">
                 <div className="right">
                   <div className="contact-form">
-                      <input type="text" required>
+                      <input type="text" required />
                       <span>Full Name</span>
                   </div>
       
                   <div className="contact-form">
-                      <input type="E-mail" required>
+                      <input type="E-mail" required />
                       <span>E-mail Id</span>
                   </div>
                   <div class="contact-form">
@@ -70,7 +70,7 @@ export const About = (props) => {
                   </div>
       
                   <div className="contact-form">
-                      <input type="submit" name="submit">
+                      <input type="submit" name="submit" />
                   </div>
                   </div>
                 </div>
