@@ -125,7 +125,7 @@ export const Home = (props) => {
   const images = [
     { 
       name: "Almost New GTX-155 , ONLY 23 HOURS", 
-      img: "http://canadianboatsales.ca/uploads/6/4/1/2/64120613/img-5323_orig.jpg"
+      img: "https://di-uploads-pod19.dealerinspire.com/westshoremarineleisure1/uploads/2019/03/Used-Fishing-Boat.jpg"
     },
     {
       name: "Trek Bike 2021",

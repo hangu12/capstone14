@@ -7,7 +7,7 @@
   padding: 10px 0;
 }
 
-.simple-list .my-item h1, h2, h3 {
+.simple-list .my-item h1, .simple-list .my-item h2 {
   margin: 0;
 }
 .simple-list .my-item a {
