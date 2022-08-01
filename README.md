@@ -27,6 +27,11 @@ say yes, then you will be using 3001 port for client.
 
 go to localhost:3001
 
+## Git
+
+git fetch origin # get the data from github to your local 
+ 
+
 ## Deploy to heroku 
 ```
 npm run build 
