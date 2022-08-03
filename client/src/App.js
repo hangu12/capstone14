@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -23,9 +23,20 @@ import ChatRoom from './ChatRoom';
 function App() {
   console.log("App rendering");
 
+  const [menuActive, setMenuActive] = useState(false);
   const Add = (props) => {
     return (<div>Add</div>)
   }
+
+  const onMenuClick = (e) => {
+
+    setMenuActive(!menuActive);
+
+  }
+
+  const activeClass = () => menuActive ? 'active' : '';
+
+
 
   return (
     <BrowserRouter>
@@ -33,24 +44,24 @@ function App() {
         <nav className="navbar">
           <div className="navbar__container">
             <a href="/" id="navbar__logo">JOONG GO</a>
-            <div className="navbar__toggle" id="mobile-menu">
+            <div className={ `navbar__toggle ${activeClass()}` } id="mobile-menu" onClick={onMenuClick}>
                 <span className="bar"></span>
                 <span className="bar"></span>
                 <span className="bar"></span>
             </div>
-            <ul className="navbar__menu">
+            <ul className={`navbar__menu ${activeClass()}`}>
               <li className="navbar__item">
-                <Link to="/" className="navbar__links">
+                <Link to="/" className="navbar__links" onClick={() => setMenuActive(false) } >
                   Home
                 </Link>
               </li>
               <li className="navbar__item">
-                <Link to="items" className="navbar__links">
+                <Link to="items" className="navbar__links" onClick={() => setMenuActive(false) } >
                   Items
                 </Link>
               </li>
               <li className="navbar__item">
-                <Link to="about" className="navbar__links">
+                <Link to="about" className="navbar__links" onClick={() => setMenuActive(false) } >
                   About
                 </Link>
               </li>

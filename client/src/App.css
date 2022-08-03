@@ -200,7 +200,8 @@ ul {
   }
 
   .navbar__menu {
-    display: grid;
+    /* display: grid; */
+    display: none;
     grid-template-columns: auto;
     margin: 0;
     width: 100%;
@@ -210,6 +211,7 @@ ul {
     height: 50vh;
     z-index: -1;
     background: #131313;
+    margin-top: 74px;
   }
 
   .navbar__menu.active {
@@ -220,6 +222,7 @@ ul {
     z-index: 99;
     height: 50vh;
     font-size: 1.6rem;
+    display: grid;
   }
   #navbar__logo {
     padding-left: 25px;
@@ -265,10 +268,10 @@ ul {
     display: block;
     cursor: pointer;
   }
-  #mobile-menu.is-active .bar:nth-child(2) {
+  #mobile-menu.active .bar:nth-child(2) {
     opacity: 0;
   }
-  #mobile-menu.is-active .bar:nth-child(1) {
+  #mobile-menu.active .bar:nth-child(1) {
     transform: translate(8px) rotate(-45deg);
   }
 }
