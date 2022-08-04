@@ -1,0 +1,25 @@
+.my-items, .my-home {
+  max-width: 768px;
+  margin: 0 auto;
+}
+.my-items li {
+  border-bottom: 1px solid #d5d5d5;
+  padding: 10px 0;
+}
+.my-items h1, .my-items h2 {
+  margin: 0;
+}
+.my-items  a {
+  color: #000;
+}
+.my-items .fl {
+  justify-content: flex-start;
+  gap: 16px;
+}
+.my-items .img-wrap {
+  width: 100px;
+}
+
+.my-home li {
+  padding: 10px 0;
+}

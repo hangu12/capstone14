@@ -29,8 +29,79 @@ go to localhost:3001
 
 ## Git
 
-git fetch origin # get the data from github to your local 
- 
+### Config (only one time)
+Paste below code to your C:/username/.gitconfig 
+
+```
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  cp = cherry-pick
+  logp = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+```
+
+### Write code 
+Always start with newe branch 
+
+```
+git co -b name_0804
+git br    // make sure you're in the branch
+```
+
+Do you changes 
+
+```
+git add -A
+git ci -a -m "your commit message"
+```
+
+```
+git st    
+```
+You'll see no unstaged changes 
+
+```
+git logp
+```
+Make sure you have your commit in the git log
+and copy & paste the `commit hash` to your notepad
+
+
+### Make a base 
+
+```
+git co main
+git fetch origin
+git reset --hard origin/main
+```
+This will overwrite your main branch with remote main branch in github.
+
+```
+git cp commithash   // commit hash you have copied before
+```
+
+#### If you have conflict, try to do below (skip this if you don't have conflict) 
+```
+git st  // see what code has conflict 
+```
+
+open the conflict file and fix the conflict 
+
+```
+git add -A
+git cp --continue
+```
+
+
+### Commit and push 
+
+```
+git st   // make sure no unstaged changes
+git logp  // make sure you have your commit in you git log
+git push origin   // push to remote (github)
+```
 
 ## Deploy to heroku 
 ```

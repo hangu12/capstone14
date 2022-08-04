@@ -6,6 +6,9 @@
 }
 
 /* Common */
+body {
+  background-color: #ececec;
+}
 .wrapper {
   margin: 0 auto;
   max-width: 960px;
@@ -17,7 +20,7 @@ main {
   min-height: 90vh;
   max-width: 960px;
   margin-bottom: 10px;
-  padding: 20px 0;
+  padding: 20px;
 }
 button {
   cursor: pointer;
@@ -29,8 +32,12 @@ a {
 .rsp-wrap {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+}
+.rsp-wrap .box {
+  width: 50%;
+  padding: 20px 20px;
 }
 ul {
   list-style-type: none;
@@ -75,7 +82,6 @@ ul {
 .fl-g4{
   flex: 4 1 0px;
 }
-
 .overlay {
   position: absolute;
   top: 0;
@@ -128,6 +134,7 @@ ul {
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;
+  min-width: 200px;
 }
 
 .fa-gem {
@@ -205,10 +212,11 @@ ul {
     grid-template-columns: auto;
     margin: 0;
     width: 100%;
+    max-width: 300px;
     top: -1000px;
     opacity: 0;
     transition: all 0.5s ease;
-    height: 50vh;
+    max-height: 50vh;
     z-index: -1;
     background: #131313;
     margin-top: 74px;
@@ -221,7 +229,7 @@ ul {
     transition: all 0.5s ease;
     z-index: 99;
     height: 50vh;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     display: grid;
   }
   #navbar__logo {
@@ -253,14 +261,14 @@ ul {
     transform: translate(5%, 20%);
   }
   .navbar__btn {
-    padding-bottom: 2rem;
+    padding-bottom: 1.6rem;
   }
   .button {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
-    height: 80px;
+    height: 50px;
     margin: 0;
   }
 
