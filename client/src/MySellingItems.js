@@ -41,6 +41,13 @@ export const MySellingItems = () => {
       price: '$25',
       wish: true
     },
+    {
+      id: 5,
+      name: 'item1 ',
+      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
+      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
+      price: '$25'
+    },
     
   ];
   const [simpleItems, setSimpleItems] = useState(itemsStub);
