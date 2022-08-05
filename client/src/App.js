@@ -23,6 +23,7 @@ import ChatRoom from './ChatRoom';
 import SignIn from './SignIn';
 import MyHome from './MyHome';
 import LoginCtl from './login_ctl';
+import MyWishItems from './MyWishItems';
 
 function App() {
   console.log("App rendering");
@@ -128,6 +129,9 @@ function App() {
               <Route path="chatrooms/:id" element={ <ChatRoom /> } />
               <Route path="my/items" element={ <MySellingItems /> } />
               <Route path="my/home" element={ <MyHome /> } />
+              <Route path="my/wish" element={ <MyWishItems /> } />
+              
+
             </Routes>
           </main>
         </div>

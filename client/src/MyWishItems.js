@@ -2,19 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import LoginCtl from './login_ctl';
 import ItemImage from "./ItemImage";
-function App() {
-  const [data,setData]=useState([])
-  useEffect(()=>{
-    fetch("https://usedproduct.herokuapp.com/api/product/").then((result)=>{
-      result.json().then((resp)=>{
-        console.warn("result",resp)
-        setData(resp)
-      })
-    })
-  },[])
-}
 
-export const MySellingItems = () => {
+
+export const MyWishItems = () => {
   LoginCtl.loginRequired();
 
   const itemsStub = [
@@ -108,7 +98,7 @@ export const MySellingItems = () => {
   );
 }
 
-export default MySellingItems;
+export default MyWishItems;
 
 
     
