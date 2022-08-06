@@ -175,7 +175,7 @@ export const Home = (props) => {
         </ul>
       </div>   
       <div className="tc mission">
-        <h2>Welcome To</h2>
+        <h2>Welcome</h2>
         <div>
           <p>Welcome to Joong Go, your virtual garage sale app,</p>
           <p>the spot where thousands of families find incredible local deals</p>

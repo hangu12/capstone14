@@ -1,0 +1,38 @@
+.img-uploader {
+
+}
+.img-uploader .drop-zone {
+  padding: 20px 10px;
+  background-color: #c5cdce57;
+}
+.img-uploader .drop-zone.dragged {
+  padding: 20px 10px;
+  background-color: #7cf2ff78;
+}
+.img-uploader .upload-icon {
+  font-size: 1.2rem;
+  color: #9658fe;
+}
+.img-uploader .upload-icon svg {
+  width: 200px;
+  height: 100px;
+}
+.img-uploader .img-controls {
+  flex-wrap: wrap;
+}
+.img-uploader .img-control {
+  width: 23%;
+  min-width: 94px;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 4px;
+  border: 1px solid #d8d8d8;
+}
+.img-uploader .img-control button {
+  width: 20px;
+  height: 20px;
+  font-size: 1.2rem;
+}
+.img-uploader .img-wrap {
+  /* width: 25%; */
+}

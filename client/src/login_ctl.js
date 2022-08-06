@@ -6,7 +6,6 @@
 
 const SESSION_STORAGE_KEY = "joongo";
 
-
 const loginRequired = () => {
   if (getUser()){
     return;
@@ -55,16 +54,16 @@ const loggedInAs = (user) => {
   }
 }
 
-const setUser = (user) => {
-  sessionStorage.setItem(SESSION_STORAGE_KEY, {
-    user: user
-  });
+const signOut = () => {
+  sessionStorage.removeItem(SESSION_STORAGE_KEY);
+  window.location.href = '/';
 }
 
 const LoginCtl = {
   loginRequired: loginRequired, 
   getUser: getUser,
-  loggedInAs: loggedInAs
+  loggedInAs: loggedInAs,
+  signOut: signOut
 }
 
 export default LoginCtl;

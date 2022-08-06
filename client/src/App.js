@@ -13,14 +13,18 @@ import './chatroom.css'
 import './myitems.css'
 import './about.css'
 import './form.css'
+import './image-uploder.css'
   
 import Home from './Home';
 import Items from './Items';
 import MySellingItems from './MySellingItems';
 import Item from './Item';
+import ItemNew from './ItemNew';
+import ItemEdit from './ItemEdit';
 import About from './About';
 import ChatRoom from './ChatRoom';
 import SignIn from './SignIn';
+import SignUp from './SignUp';
 import MyHome from './MyHome';
 import LoginCtl from './login_ctl';
 import MyWishItems from './MyWishItems';
@@ -73,6 +77,10 @@ function App() {
 
   const activeClass = () => menuActive ? 'active' : '';
 
+  const props = {
+    username: user ? user.username : ''
+  }
+
   return (
     <BrowserRouter>
       <div>
@@ -111,7 +119,6 @@ function App() {
                     Sign In
                   </Link>
                 }
-                
               </li>
             </ul>
           </div>
@@ -119,19 +126,19 @@ function App() {
         <div className="wrapper">
           <main>
             <Routes>
-              <Route path="/" element={ <Home /> } />
+              <Route path="/" element={ <Home {...props} /> } />
               <Route path="user/sign_in" element={ <SignIn /> } />
-              <Route path="user/sign_up" element={ <SignIn /> } />
+              <Route path="user/sign_up" element={ <SignUp /> } />
               <Route path="items" element={ <Items /> } />
+              <Route path="items/new" element={ <ItemNew /> } />
+              <Route path="items/edit/:id" element={ <ItemEdit /> } />
               <Route path="items/:id" element={ <Item /> } />
               <Route path="about" element={ <About /> } />
               <Route path="add" element={ <Add /> } />
-              <Route path="chatrooms/:id" element={ <ChatRoom /> } />
+              <Route path="chatrooms/:id" element={ <ChatRoom {...props} /> } />
               <Route path="my/items" element={ <MySellingItems /> } />
               <Route path="my/home" element={ <MyHome /> } />
               <Route path="my/wish" element={ <MyWishItems /> } />
-              
-
             </Routes>
           </main>
         </div>

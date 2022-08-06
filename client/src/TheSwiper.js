@@ -7,17 +7,6 @@ import 'swiper/modules/navigation/navigation.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 
 export const TheSwiper = (props) => {
-  console.log("TheSwiper rendering", props);
-  // const [wish, setWish] = useState(false);
-  const [item, setItem] = useState(null);
-
-  useEffect(() => {
-    console.log("TheSwiper mounted");
-  
-    return () => {
-      console.log("TheSwiper unmounted");
-    }
-  }, [])
 
   return (
     <div className="swiper-container">

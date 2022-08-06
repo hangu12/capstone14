@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ChatMessage from "./ChatMessage";
+import Utils from "./utils";
 
 export const ChatRoom = (props) => {
-  console.log("ChatRoom rendering");
   const [messages, setMessages] = useState(null);
   const [curMessage, setCurMessage] = useState('');
 
@@ -38,6 +38,20 @@ export const ChatRoom = (props) => {
     console.log("loadMessages");
   }
 
+  const onEnterKeyUp = (e) => {
+    e.preventDefault();
+    if (e.key == "Enter"){
+      setMessages([...messages, {
+        user: props.username,
+        me: true,
+        content: curMessage,
+        created_at: Utils.now()
+      }])
+      setCurMessage('');
+    }
+    
+  }
+
   return (
     <div className="chatroom">
       <div className="chatroom-info">
@@ -70,6 +84,7 @@ export const ChatRoom = (props) => {
             className="control"
             value={ curMessage }
             onChange={ (e)=> (setCurMessage(e.target.value)) }
+            onKeyUp={ onEnterKeyUp }
             placeholder={ 'Type a message' }
           />
         </div>

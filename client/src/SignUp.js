@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import LoginCtl from './login_ctl';
 
-export const SignIn = (props) => {
+export const SignUp = (props) => {
+  console.log("SignUpSignUp");
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
 
   const [emailValidity, setEmailValidity] = useState(false);
+  const [usernameValidity, setUsernameValidity] = useState(false);
   const [passwordValidity, setPasswordValidity] = useState(false);
+  const [passwordConfirmValidity, setPasswordConfirmValidity] = useState(false);
 
   const submitForm = () => {
 
@@ -58,10 +64,35 @@ export const SignIn = (props) => {
   }, [])
 
 
+  const formValid = () => (
+    emailValidity && passwordValidity && passwordConfirmValidity
+  )
+
   const onEmailChange = (e) => {
-    e.target.reportValidity()
+    e.target.reportValidity();
     setEmailValidity(e.target.checkValidity());
     setEmail(e.target.value);
+  }
+
+  const onUsernameChange = (e) => {
+    setUsernameValidity(e.target.checkValidity());
+    setUsername(e.target.value);
+  }
+
+  const onPasswordChange = (e) => {
+    e.target.reportValidity()
+    setPasswordValidity(e.target.checkValidity());
+    setPassword(e.target.value);
+  }
+
+  const onPasswordConfirmChange = (e) => {
+    e.target.reportValidity();
+    if (password == e.target.value){
+      setPasswordConfirmValidity(true);
+    }else {
+      setPasswordConfirmValidity(false);
+    }
+    setPasswordConfirm(e.target.value);
   }
 
   return (
@@ -69,6 +100,19 @@ export const SignIn = (props) => {
     <div className="sign-in form sm">
       <h1>Sign In</h1>
       <div className="pd-tb">
+      </div>
+      <div className="field">
+        <label htmlFor="username">
+          Username
+        </label> 
+        <input
+          type="text"
+          className="form-control"
+          required="required"
+          value={ username }
+          onChange={ onUsernameChange }
+          placeholder={ "Username" }
+        />
       </div>
       <div className="field">
         <label htmlFor="email">
@@ -85,6 +129,17 @@ export const SignIn = (props) => {
         />
       </div>
       <div className="field">
+        <label htmlFor="phone">
+          Phone
+        </label> 
+        <input
+          type="phone"
+          className="form-control"
+          value={ phone }
+          placeholder={ "Phone (Optional)" }
+        />
+      </div>
+      <div className="field">
         <label htmlFor="password">
           Password
         </label> 
@@ -93,16 +148,29 @@ export const SignIn = (props) => {
           className="form-control"
           required="required"
           value={ password }
-          onChange={ e => setPassword(e.target.value)}
+          onChange={ onPasswordChange }
           placeholder={ "Password" }
         />
       </div>
-      <div className="pd-tb">
-        <input onClick={ submitForm } type="submit" name="submit" disabled={!(emailValidity && emailValidity)} />
+      <div className="field">
+        <label htmlFor="password_confirm">
+          Password Confirm
+        </label> 
+        <input
+          type="password"
+          className="form-control"
+          required="required"
+          value={ passwordConfirm }
+          onChange={ onPasswordConfirmChange }
+          placeholder={ "Confirm Password" }
+        />
       </div>
       <div className="pd-tb">
-        <Link to="/user/sign_up" >
-          Sign Up
+        <input onClick={ submitForm } type="submit" name="submit" disabled={!formValid()} />
+      </div>
+      <div className="pd-tb">
+        <Link to="/user/sign_in" >
+          Sign In
         </Link>
       </div> 
     </div>  
@@ -111,4 +179,4 @@ export const SignIn = (props) => {
   );
 }
 
-export default SignIn;
+export default SignUp;

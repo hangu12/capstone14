@@ -5,11 +5,17 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 import TheSwiper from "./TheSwiper";
 import ItemImage from "./ItemImage";
+import LoginCtl from "./login_ctl";
 
 export const Item = (props) => {
   console.log("Item rendering", props);
   // const [wish, setWish] = useState(false);
   const [item, setItem] = useState(null);
+
+  const user = LoginCtl.getUser();
+  // const isMyItem = (user && user.username == props.seller);
+  const isMyItem = true;
+
   let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -22,6 +28,7 @@ export const Item = (props) => {
         console.log("fetcheddata is ", data);
 
         setItem({
+          _id: data._id,
           name: data.name,
           price: data.price,
           images: [
@@ -55,7 +62,16 @@ export const Item = (props) => {
 
   }
 
-  
+  const toggleAvailable = (e) => {
+    e.preventDefault();
+    console.log("toggleAvailable! -- send api ");
+
+    setItem({
+      ...item,
+      ...{ available: !item.available }
+    })
+  }
+
   const slideElements = () => {
     return item.images.map((img, idx) => (
       <div key={idx} className="img-wrap">
@@ -87,16 +103,34 @@ export const Item = (props) => {
           <div className="pd-tb seller">{ item.seller }</div>    
           <div className="fl control">
             <div className="price">${ item.price }</div>
-            <div className="buttons">
-              <button onClick={ onWishBtnClick }>
-                <FontAwesomeIcon icon={faHeart} className={wishClass()} />
-              </button>
-            </div>
+            { !isMyItem && 
+              <div className="buttons">
+                <button onClick={ onWishBtnClick }>
+                  <FontAwesomeIcon icon={faHeart} className={wishClass()} />
+                </button>
+              </div>
+            }
+            
           </div>  
           <div className="mg-tb pd-tb">
+            { isMyItem ? 
+              <>
+                <button onClick={ toggleAvailable } className={ `primary ${item.available ? 'orange' : 'green'}` }>
+                  { item.available ? 'Mark as Sold' : 'Mark as Available'}
+                </button>
+                <div className="pd-tb">
+                  <Link to={`/items/edit/${item._id}`}>
+                      Edit item
+                  </Link> 
+                </div>
+              </>
+              
+            :
             <Link to="/chatrooms/1" className="msg-button">
                 Message to Seller
             </Link> 
+            }
+            
           </div>  
         </div>
       </div>

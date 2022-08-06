@@ -54,6 +54,13 @@ ul {
 .img-wrap img {
   width: 100%;  
 }
+img.square {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.tc {
+  text-align: center;
+}
 .mg-tb{
   margin: 20px 0;
 }
@@ -76,6 +83,15 @@ ul {
   justify-content: space-between;
   align-items: center;
 }
+.fl.fs{
+  justify-content: flex-start;
+}
+.fl.fc{
+  flex-direction: column;
+}
+.gap {
+  gap: 6px;
+}
 .fl-g1{
   flex: 1 1 0px;
 }
@@ -91,8 +107,8 @@ ul {
   background-color: #3c3c3c30;
   color: #fff;
 }
-.tc {
-  text-align: center;
+.bold {
+  font-weight: bold;
 }
 /* End of Common */
 
@@ -169,7 +185,9 @@ ul {
   padding: 0 1rem;
   width: 100%;
 }
-
+.btn-padd {
+  padding: 10px 20px;
+}
 .button {
   display: flex;
   justify-content: center;
@@ -183,6 +201,9 @@ ul {
   border-radius: 4px;
   background: #f77062;
   color: #fff;
+}
+.button.new-item {
+
 }
 .button:hover {
   background: #0a7dd5;
@@ -386,6 +407,9 @@ ul {
 @media screen and (max-width: 768px) {
   .rsp-wrap {
     display: block;
+  }
+  .rsp-wrap .box {
+    width: 100%;
   }
 
   .main__container{

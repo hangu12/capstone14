@@ -13,6 +13,9 @@
   border: 1px solid #dadada;
   border-radius: 4px;
 }
+.form .form-control.sm {
+  width: 50%;
+}
 .form .field {
   margin: 10px 0;
 }
@@ -36,7 +39,7 @@
   padding: 8px 0;
   gap: 4px;
 }
-.form input[type=submit] {
+.form input[type=submit], button.primary, a.primary {
   background-color: dodgerblue;
   border: 2px solid dodgerblue;
   font-size: 18px;
@@ -45,7 +48,7 @@
   margin-top: -5px;
   color: #fff;
 }
-.form input[type=submit]:disabled {
+.form input[type=submit]:disabled, button.primary:disabled {
   background-color: #bfc7ce;
   border: 2px solid #bfc7ce;
 }
