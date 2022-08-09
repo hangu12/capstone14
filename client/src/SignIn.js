@@ -78,6 +78,7 @@ export const SignIn = (props) => {
           type="email"
           className="form-control"
           required="required"
+          aria-required="true"
           pattern= ".+@.+"
           value={ email }
           onChange={ onEmailChange }
@@ -92,6 +93,7 @@ export const SignIn = (props) => {
           type="password"
           className="form-control"
           required="required"
+          aria-required="true"
           value={ password }
           onChange={ e => setPassword(e.target.value)}
           placeholder={ "Password" }

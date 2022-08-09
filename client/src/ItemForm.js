@@ -83,6 +83,7 @@ export const ItemForm = (props) => {
                 type="text"
                 className="form-control"
                 required="required"
+                aria-required="true"
                 pattern=".+"
                 value={ name }
                 onChange={ onNameChange }

@@ -105,6 +105,11 @@ function App() {
               </li>
               <li className="navbar__item">
                 <Link to="about" className="navbar__links" onClick={() => setMenuActive(false) } >
+                  Contact
+                </Link>
+              </li>
+              <li className="navbar__item">
+                <Link to="about" className="navbar__links" onClick={() => setMenuActive(false) } >
                   About
                 </Link>
               </li>

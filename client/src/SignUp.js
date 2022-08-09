@@ -109,6 +109,7 @@ export const SignUp = (props) => {
           type="text"
           className="form-control"
           required="required"
+          aria-required="true"
           value={ username }
           onChange={ onUsernameChange }
           placeholder={ "Username" }
@@ -122,6 +123,7 @@ export const SignUp = (props) => {
           type="email"
           className="form-control"
           required="required"
+          aria-required="true"
           pattern= ".+@.+"
           value={ email }
           onChange={ onEmailChange }
@@ -147,6 +149,7 @@ export const SignUp = (props) => {
           type="password"
           className="form-control"
           required="required"
+          aria-required="true"
           value={ password }
           onChange={ onPasswordChange }
           placeholder={ "Password" }
@@ -160,6 +163,7 @@ export const SignUp = (props) => {
           type="password"
           className="form-control"
           required="required"
+          aria-required="true"
           value={ passwordConfirm }
           onChange={ onPasswordConfirmChange }
           placeholder={ "Confirm Password" }
