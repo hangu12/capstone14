@@ -4,27 +4,37 @@ import { Link, useSearchParams } from "react-router-dom";
 import ImageUploader from "./ImageUploader";
 import TheSwiper from "./TheSwiper";
 import ItemImage from "./ItemImage";
+import LoginCtl from './login_ctl';
+import { CATEGORIES } from './conf';
 
 export const ItemForm = (props) => {
+  LoginCtl.loginRequired();
+
   const [name, setName] = useState(props.name);
+  const [category, setCategory] = useState(CATEGORIES[0].value);
   const [description, setDescription] = useState(props.description);
   const [price, setPrice] = useState(props.price);
 
   const [nameValidity, setNameValidity] = useState((props._id ? true : false));
   const [priceValidity, setPriceValidity] = useState((props._id ? true : false));
 
-
-
   const [images, setImages] = useState(props.images);
   const [imageFiles, setImageFiles] = useState([]);
 
-
-
-
-  let [searchParams, setSearchParams] = useSearchParams();
-
   const submitForm = () => {
-    console.log("submit!");
+    let formData = new FormData();
+    Array.from(imageFiles).forEach(imageFile => {
+      formData.append('images', imageFile);
+    });
+
+    formData.append('seller', 'hangu')
+    formData.append('name', name)
+    formData.append('category', category)
+    formData.append('price', price)
+    formData.append('available', true)
+    formData.append('description', description)
+
+    props.handleSubmit(formData);
   }
   const formValid = () => (
     nameValidity && priceValidity
@@ -48,9 +58,10 @@ export const ItemForm = (props) => {
     setNameValidity(e.target.checkValidity());
     setName(e.target.value);
   }
+  const onCategoryChange = (e) => {
+    setCategory(e.target.value)
+  }
   const onPriceChange = (e) => {
-    console.log("onPriceChange value ", e.target.value);
-    console.log("onPriceChange", e.target.checkValidity());
     e.target.reportValidity()
     if (e.target.value){
       setPriceValidity(e.target.checkValidity());
@@ -89,6 +100,17 @@ export const ItemForm = (props) => {
                 onChange={ onNameChange }
                 placeholder={ "Name of Item" }
               />
+            </div>
+            <div className="field">
+              <select onChange={ onCategoryChange } value={category} className="form-control">
+                { 
+                  CATEGORIES.map((category, idx) => (
+                    <option  key={idx} value={category.value}>
+                      { category.label }
+                    </option>
+                  ))
+                }
+              </select>
             </div>
             <div className="field">
               <textarea

@@ -7,7 +7,8 @@
   margin: 10px 0;
 }
 .items .list-item .price {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
+  color: #0479b7;
 }
 .items h3 {
   padding: 4px 0;
@@ -58,6 +59,18 @@ button.orange.primary {
   color: gray;
   padding: 4px 0;
 }
+.items .categories {
+  width: 40%;
+  padding: 4px;
+  border: 1px solid #d2d2d2;
+  border-radius: 4px;
+  min-width: 100px;
+}
+.item .category {
+  font-size: .9rem;
+  font-style: italic;
+  color: #b95e10;
+}
 .item .price {
   font-size: 1.6rem;
   font-weight: 500;
@@ -103,7 +116,8 @@ button.orange.primary {
 @media screen and (max-width: 768px) {
   .items .list-item {
     width: 100%;
-    padding: 0 20px;
+    border-bottom: 1px solid #d0d0d0;
+    margin-bottom: 30px;
   }
   .item .box {
     width: 100%;

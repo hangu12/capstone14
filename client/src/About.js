@@ -42,7 +42,7 @@ export const About = (props) => {
             <section>
               <i className="fa fa-envelope fa-2x" aria-hidden="true"></i>
               <h2>E-mail</h2>
-              <p>Usedthings@gmail.com</p>
+              <p>contact@joonggo.com</p>
             </section>
           </div>
         </div>

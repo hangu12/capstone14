@@ -47,8 +47,12 @@
   height: 40px;
   margin-top: -5px;
   color: #fff;
+  cursor: pointer;
 }
 .form input[type=submit]:disabled, button.primary:disabled {
   background-color: #bfc7ce;
   border: 2px solid #bfc7ce;
+}
+.error {
+  color: red;
 }

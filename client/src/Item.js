@@ -1,51 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 import TheSwiper from "./TheSwiper";
 import ItemImage from "./ItemImage";
+import API from "./api";
 import LoginCtl from "./login_ctl";
+import { API_BASE, IMAGE_HOST, CATEGORY_MAP } from "./conf";
 
 export const Item = (props) => {
-  console.log("Item rendering", props);
-  // const [wish, setWish] = useState(false);
+  const { id } = useParams();
   const [item, setItem] = useState(null);
-
   const user = LoginCtl.getUser();
-  // const isMyItem = (user && user.username == props.seller);
-  const isMyItem = true;
+  
+  const isMyItem = () => {
+    if (!user) return false;
+    if (!item) return false;
 
-  let [searchParams, setSearchParams] = useSearchParams();
-
+    if (user.username.toLowerCase() == item.seller.toLowerCase()){
+      return true;
+    }
+    return false;
+  };
+  
   useEffect(() => {
-    console.log("Item mounted");
-    const url = "https://usedproduct.herokuapp.com/api/product/62d8471c231c8aa8fb24b9c4";
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("fetcheddata is ", data);
-
-        setItem({
-          _id: data._id,
-          name: data.name,
-          price: data.price,
-          images: [
-            "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/216010698/658570596d14659e4949f55a1f32ddb9.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=df9683f92785a91c320eb80ceb7ae342",
-            "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/216011129/7d0eefdaa928bcb024dfcb769444109a.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=9c2d3cc71c9261302b4a026dab44f35e",
-            "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/216011131/f31ee6c12b733988b2cb752bea42d236.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=65ca3f4e843361536ea19b28844cc551"
-          ],
-          // images: [data.image],
-          description: data.description,
-          seller: data.seller,
-          available: data.available,
-          wish: false
-        })
-      });
+    let url = `${API_BASE}/product/${id}`;
+    if (user){
+      url = url + `?user_id=${user._id}`
+    }
+    API.get(url)
+    .then((data) => {
+      setItem({
+        _id: data._id,
+        name: data.name,
+        category: data.category,
+        price: data.price,
+        images: data.images.map(i => `${IMAGE_HOST}/${i.src}`),
+        description: data.description,
+        seller: data.seller,
+        available: data.available,
+        wish: data.wished
+      })
+    });
 
     return () => {
-      console.log("Item unmounted");
+      
     }
   }, [])
 
@@ -53,23 +53,43 @@ export const Item = (props) => {
 
   const onWishBtnClick = (e) => {
     e.preventDefault();
-    console.log("wish! -- send api ");
+    LoginCtl.loginRequired();
+    
+    if (item.wish){
+      const url = `${API_BASE}/wishlist/${item._id}`;
+      API.delete(url, { user_id: user._id, product_id: item._id })
+      .then((data) => {
+        setItem({
+          ...item,
+          ...{ wish: !item.wish }
+        })
+      });
 
-    setItem({
-      ...item,
-      ...{ wish: !item.wish }
-    })
+    }else{
+      const url = `${API_BASE}/wishlist`;
+      API.post(url, { user_id: user._id, product_id: item._id })
+      .then((data) => {
+        setItem({
+          ...item,
+          ...{ wish: !item.wish }
+        })
+      });
+    }
 
   }
 
   const toggleAvailable = (e) => {
     e.preventDefault();
-    console.log("toggleAvailable! -- send api ");
-
-    setItem({
-      ...item,
-      ...{ available: !item.available }
-    })
+    LoginCtl.loginRequired();
+      
+    const url = `${API_BASE}/product/${item._id}/available`;
+    API.put(url, { product_id: item._id, available: !item.available })
+    .then((data) => {
+      setItem({
+        ...item,
+        ...{ available: !item.available }
+      })
+    });
   }
 
   const slideElements = () => {
@@ -97,13 +117,16 @@ export const Item = (props) => {
           <div className="pd-tb">
             <h1>{ item.name} </h1>
           </div>
+          <div className="pd-tb category">
+            <p>{ CATEGORY_MAP[item.category]}</p>
+          </div>
           <div className="pd-tb desc">
             <p>{item.description}</p>
           </div>
           <div className="pd-tb seller">{ item.seller }</div>    
           <div className="fl control">
             <div className="price">${ item.price }</div>
-            { !isMyItem && 
+            { !isMyItem() && 
               <div className="buttons">
                 <button onClick={ onWishBtnClick }>
                   <FontAwesomeIcon icon={faHeart} className={wishClass()} />
@@ -113,7 +136,7 @@ export const Item = (props) => {
             
           </div>  
           <div className="mg-tb pd-tb">
-            { isMyItem ? 
+            { isMyItem() ? 
               <>
                 <button onClick={ toggleAvailable } className={ `primary ${item.available ? 'orange' : 'green'}` }>
                   { item.available ? 'Mark as Sold' : 'Mark as Available'}

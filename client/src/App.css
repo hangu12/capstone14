@@ -439,6 +439,10 @@ img.square {
       margin-top: 1rem;
       font-size: 1.5rem;
   }
+  img.square {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
 }
 @media screen and (max-weidth: 480px){
   .main__content h1{

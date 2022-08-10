@@ -30,46 +30,19 @@ import LoginCtl from './login_ctl';
 import MyWishItems from './MyWishItems';
 
 function App() {
-  console.log("App rendering");
   const [user, setUser] = useState(null);
   const [menuActive, setMenuActive] = useState(false);
 
   useEffect(() => {
-
     const u = LoginCtl.getUser();
-    console.log("uuuuuuser ", u);
     if (u){
-      console.log("uuuuuuser name ", u.username);
-      // {
-      //   id: '2323',
-      //   token: 'fdicA@2d'
-      // }
       setUser(u);
     }
 
-    // getSession();
-    // const url = "https://usedproduct.herokuapp.com/api/product/62d8471c231c8aa8fb24b9c4";
-
-    // fetch(url)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("fetcheddata is ", data);
-
-    //     setUser({
-    //       id: '2323',
-    //       token: 'fdicA@2d'
-    //     })
-    //   });
-
     return () => {
-      console.log("Item unmounted");
+      
     }
   }, [])
-
-
-  const Add = (props) => {
-    return (<div>Add</div>)
-  }
 
   const onMenuClick = (e) => {
     setMenuActive(!menuActive);
@@ -108,16 +81,11 @@ function App() {
                   Contact
                 </Link>
               </li>
-              <li className="navbar__item">
-                <Link to="about" className="navbar__links" onClick={() => setMenuActive(false) } >
-                  About
-                </Link>
-              </li>
               <li className="navbar__btn">
                 {
                   user && user.username ?
                   <Link to="my/home" className="button" onClick={() => setMenuActive(false) } >
-                    Hi, {user.username }
+                    {user.username }
                   </Link>
                   :
                   <Link to="user/sign_in" className="button" onClick={() => setMenuActive(false) } >
@@ -139,7 +107,6 @@ function App() {
               <Route path="items/edit/:id" element={ <ItemEdit /> } />
               <Route path="items/:id" element={ <Item /> } />
               <Route path="about" element={ <About /> } />
-              <Route path="add" element={ <Add /> } />
               <Route path="chatrooms/:id" element={ <ChatRoom {...props} /> } />
               <Route path="my/items" element={ <MySellingItems /> } />
               <Route path="my/home" element={ <MyHome /> } />

@@ -47,6 +47,10 @@ const loggedInAs = (user) => {
     user: user
   }));
   
+  if (!user || !user._id){
+    return;
+  }
+
   if (path){
     window.location.href = path;
   }else{

@@ -1,128 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
+import API from "./api";
+import { API_BASE, CATEGORIES } from "./conf";
 import ListItem from './ListItem'
 import TheSwiper from "./TheSwiper";
 
 export const Home = (props) => {
-  console.log("Home rendering");
-  const itemsStub1 = [
-    {
-      id: 1,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25'
-    },
-    {
-      id: 2,
-      name: 'item2 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    },
-    {
-      id: 3,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    },
-    {
-      id: 3,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    }
-  ];
-  const itemsStub2 = [
-    {
-      id: 1,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25'
-    },
-    {
-      id: 2,
-      name: 'item2 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    },
-    {
-      id: 3,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    },
-    {
-      id: 3,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    }
-  ];
-  const itemsStub3 = [
-    {
-      id: 1,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25'
-    },
-    {
-      id: 2,
-      name: 'item2 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    },
-    {
-      id: 3,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    },
-    {
-      id: 3,
-      name: 'item1 ',
-      imgSrc: "https://pixl.varagesale.com/http://s3.amazonaws.com/hopshop-image-store-production/235905550/9c485573d82f9a3a6319cd91adc068aa.jpg?_ver=large_uploader_thumbnail&w=640&h=640&fit=crop&s=27c1fa2d49b0d7836749ac6d23d04aa9",
-      desc: 'Adorable and gorgeous swan rocker. Gold crown has some discolouration. Used primarily for photos. Great condition. Super soft, furry fabric is supported by durable wood construction. ',
-      price: '$25',
-      wish: true
-    }
-  ];
-  const [items1, setItems1] = useState(itemsStub1);
-  const [items2, setItems2] = useState(itemsStub2);
-  const [items3, setItems3] = useState(itemsStub3);
-  const [names, setNames] = useState([]);
+
+  const [popItems, setPopItems] = useState([]);
+  const [items1, setItems1] = useState([]);
+  const [items2, setItems2] = useState([]);
+  const [items3, setItems3] = useState([]);
+  const [items4, setItems4] = useState([]);
 
   useEffect(() => {
-    console.log("Detail mounted");
-  
+
+    // let url = `${API_BASE}/popproduct`;
+    //   API.get(url)
+    //   .then((data) => {
+    //     console.log("popproduct", data);
+    //   })
+    CATEGORIES.map(c => {
+      let url = `${API_BASE}/product?category=${c.value}`;
+      API.get(url)
+      .then((data) => {
+
+        switch(c.value) {
+          case "1":
+            setItems1(data);
+            break;
+          case "2":
+            setItems2(data);
+            break;
+          case "3":
+            setItems3(data);
+            break;
+          case "4":
+            setItems4(data);
+            break;
+        }
+      });
+
+    })
+    
     return () => {
-      console.log("Detail unmounted");
     }
   }, [])
 
-  const wishClass = (item) => item.wish ? 'active' : '';
 
-  const images = [
+  const hightlight = [
     { 
       name: "Almost New GTX-155 , ONLY 23 HOURS", 
       img: "https://di-uploads-pod19.dealerinspire.com/westshoremarineleisure1/uploads/2019/03/Used-Fishing-Boat.jpg"
@@ -141,7 +68,7 @@ export const Home = (props) => {
     },
   ]
   const slideElements = () => {
-    return images.map((item, idx) => (
+    return hightlight.map((item, idx) => (
       <div key={idx} className="img-wrap hero-img">
         <div className="overlay">
           <p className="hero-title">{item.name}</p>
@@ -165,7 +92,7 @@ export const Home = (props) => {
         <h2>Popular</h2>
         <ul className="rsp-wrap">
         {
-          items1.map((item, idx) => (
+          popItems.map((item, idx) => (
             <ListItem 
               key={idx}
               {...item}
@@ -183,7 +110,7 @@ export const Home = (props) => {
         </div>  
       </div>   
       <div className="items">
-        <h2>Kids</h2>
+        <h2>{CATEGORIES[0].label}</h2>
         <ul className="rsp-wrap">
         {
           items1.map((item, idx) => (
@@ -196,10 +123,36 @@ export const Home = (props) => {
         </ul>
       </div>   
       <div className="items">
-        <h2>Car</h2>
+        <h2>{CATEGORIES[1].label}</h2>
         <ul className="rsp-wrap">
         {
-          items1.map((item, idx) => (
+          items2.map((item, idx) => (
+            <ListItem 
+              key={idx}
+              {...item}
+            />
+          ))
+        }
+        </ul>
+      </div>   
+      <div className="items">
+        <h2>{CATEGORIES[2].label}</h2>
+        <ul className="rsp-wrap">
+        {
+          items3.map((item, idx) => (
+            <ListItem 
+              key={idx}
+              {...item}
+            />
+          ))
+        }
+        </ul>
+      </div>   
+      <div className="items">
+        <h2>{CATEGORIES[3].label}</h2>
+        <ul className="rsp-wrap">
+        {
+          items4.map((item, idx) => (
             <ListItem 
               key={idx}
               {...item}
