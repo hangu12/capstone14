@@ -21,7 +21,10 @@ export const ItemNew = (props) => {
     })
     .then((res) => res.json())
     .then((data) => {
+      console.log("data", data);
       if (data.error){
+        alert(data.error.message);
+        window.location.href = `/items/new`;
         return;
       }
       window.location.href = `/items/${data._id}`;
