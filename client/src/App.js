@@ -28,7 +28,6 @@ import SignUp from './SignUp';
 import MyHome from './MyHome';
 import LoginCtl from './login_ctl';
 import MyWishItems from './MyWishItems';
-import { IMAGE_HOST } from './conf';
 
 function App() {
   const [user, setUser] = useState(null);

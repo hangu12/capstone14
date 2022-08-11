@@ -7,7 +7,7 @@ import TheSwiper from "./TheSwiper";
 import ItemImage from "./ItemImage";
 import API from "./api";
 import LoginCtl from "./login_ctl";
-import { API_BASE, IMAGE_HOST, CATEGORY_MAP } from "./conf";
+import { API_BASE, CATEGORY_MAP } from "./conf";
 
 export const Item = (props) => {
   const { id } = useParams();
@@ -36,7 +36,7 @@ export const Item = (props) => {
         name: data.name,
         category: data.category,
         price: data.price,
-        images: data.images.map(i => `${IMAGE_HOST}/${i.src}`),
+        images: data.images.map(i => i.src),
         description: data.description,
         seller: data.seller,
         available: data.available,

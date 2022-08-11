@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import ItemImage from "./ItemImage";
-import { API_BASE, IMAGE_HOST } from "./conf";
 
 export const ListItem = (props) => {
 
@@ -18,7 +15,7 @@ export const ListItem = (props) => {
   const imgSrc = () => {
     if (props.images && props.images.length > 0){
       try {
-        return `${IMAGE_HOST}/${props.images[0].src}`;  // because of some test data.
+        return props.images[0].src;  // because of some test data.
       }catch (err){
         return '';
       }

@@ -3,7 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import ItemForm from "./ItemForm";
 import API from "./api";
 import LoginCtl from "./login_ctl";
-import { API_BASE, IMAGE_HOST } from "./conf";
+import { API_BASE } from "./conf";
 
 export const ItemEdit = (props) => {
   LoginCtl.loginRequired();
@@ -25,7 +25,7 @@ export const ItemEdit = (props) => {
           _id: data._id,
           name: data.name,
           price: data.price,
-          images: data.images.map(i => `${IMAGE_HOST}/${i.src}`),
+          images: data.images.map(i => i.src),
           description: data.description,
           seller: data.seller,
           available: data.available,
