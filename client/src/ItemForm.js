@@ -9,6 +9,7 @@ import { CATEGORIES } from './conf';
 
 export const ItemForm = (props) => {
   LoginCtl.loginRequired();
+  const user = LoginCtl.getUser();
 
   const [name, setName] = useState(props.name);
   const [category, setCategory] = useState(CATEGORIES[0].value);
@@ -22,12 +23,13 @@ export const ItemForm = (props) => {
   const [imageFiles, setImageFiles] = useState([]);
 
   const submitForm = () => {
+
     let formData = new FormData();
     Array.from(imageFiles).forEach(imageFile => {
       formData.append('images', imageFile);
     });
 
-    formData.append('seller', 'hangu')
+    formData.append('seller', user.username)
     formData.append('name', name)
     formData.append('category', category)
     formData.append('price', price)

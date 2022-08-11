@@ -16,12 +16,7 @@ export const ItemNew = (props) => {
     const url = `${API_BASE}/product`;
      
     fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE 등
-      // headers: {
-      //   // 'Content-Type': 'application/json',
-      //   'Content-Type': 'multipart/form-data'
-      //   // 'Content-Type': 'application/x-www-form-urlencoded',
-      // },
+      method: 'POST', 
       body: formData
     })
     .then((res) => res.json())

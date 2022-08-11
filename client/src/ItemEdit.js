@@ -15,9 +15,9 @@ export const ItemEdit = (props) => {
     const user = LoginCtl.getUser();
     if (user){
       let url = `${API_BASE}/product/${id}`;
-      if (user){
-        url = url + `?user_id=${user._id}`  // To get wished
-      }
+      // if (user){
+      //   url = url + `?user_id=${user._id}`  // To get wished
+      // }
 
       API.get(url)
       .then((data) => {

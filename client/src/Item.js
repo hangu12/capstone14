@@ -13,7 +13,7 @@ export const Item = (props) => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const user = LoginCtl.getUser();
-  
+  console.log("token", user.accessToken);
   const isMyItem = () => {
     if (!user) return false;
     if (!item) return false;
@@ -27,7 +27,7 @@ export const Item = (props) => {
   useEffect(() => {
     let url = `${API_BASE}/product/${id}`;
     if (user){
-      url = url + `?user_id=${user._id}`
+      url = `${url}?user_id=${user._id}` // To get wished
     }
     API.get(url)
     .then((data) => {

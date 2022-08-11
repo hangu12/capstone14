@@ -16,11 +16,11 @@ export const Home = (props) => {
 
   useEffect(() => {
 
-    // let url = `${API_BASE}/popproduct`;
-    //   API.get(url)
-    //   .then((data) => {
-    //     console.log("popproduct", data);
-    //   })
+    API.get(`${API_BASE}/pops`)
+    .then((data) => {
+      setPopItems(data)
+    })
+
     CATEGORIES.map(c => {
       let url = `${API_BASE}/product?category=${c.value}`;
       API.get(url)
