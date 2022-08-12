@@ -55,15 +55,20 @@ export const ItemEdit = (props) => {
 
   
   return (
-    <div className="item edit">
-      <h1>Edit Item</h1>
-      {
-        item && <ItemForm 
-          {...item}
-          handleSubmit={ handleSubmit }
-        />
-      }
+    <div className="wrapper">
+      <main>
+        <h1>Edit Item</h1>
+        <div className="item edit">
+          {
+            item && <ItemForm 
+              {...item}
+              handleSubmit={ handleSubmit }
+            />
+          }
+        </div>
+      </main>
     </div>
+
   );
 }
 

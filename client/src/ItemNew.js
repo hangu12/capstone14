@@ -33,13 +33,18 @@ export const ItemNew = (props) => {
   }
 
   return (
-    <div className="item new">
-      <h1>New Item</h1>
-      <ItemForm 
-        {...item}
-        handleSubmit={ handleSubmit }
-      />
+    <div className="wrapper">
+      <main>
+        <h1>Post New Item</h1>
+        <div className="item new">
+          <ItemForm 
+            {...item}
+            handleSubmit={ handleSubmit }
+          />
+        </div>
+      </main>
     </div>
+
   );
 }
 
