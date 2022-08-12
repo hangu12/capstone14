@@ -17,7 +17,8 @@ const format = (d) => {
 
 
 const Utils = {
-  now: now
+  now: now,
+  format: format
 }
 
 export default Utils;

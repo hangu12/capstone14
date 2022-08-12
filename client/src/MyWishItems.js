@@ -4,6 +4,7 @@ import LoginCtl from './login_ctl';
 import ItemImage from "./ItemImage";
 import API from "./api";
 import { API_BASE, CATEGORIES, CATEGORY_MAP } from "./conf";
+import Utils from "./utils";
 
 export const MyWishItems = () => {
   LoginCtl.loginRequired();
@@ -44,7 +45,7 @@ export const MyWishItems = () => {
                   <p className="desc sm">{ elipsised(item.descriptio, 50)}</p>
                   <div className="fl">
                     <div className="">{item.price}</div>
-                    <div className="desc">Posted at { format(item.createdAt) }</div>
+                    <div className="desc">Posted at { Utils.format(item.createdAt) }</div>
                   </div>
                 </div>    
               </div>
