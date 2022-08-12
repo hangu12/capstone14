@@ -13,6 +13,10 @@
   right: 0;
 }
 
+.about a {
+  color: #fff;
+}
+
 .about header h1{
   font-size: 30px;
 } 
@@ -23,7 +27,8 @@
   text-align: center;
   width: 75%;
   left: 12%;
-  top: 2rem;
+  /* top: 2rem; */
+  padding-bottom: 10px;
   background-color: rgba(255,255,255,0.3);
   backdrop-filter: blue(12px);
 }
@@ -77,6 +82,7 @@
   padding: 10px;
   font-size: 18px;
   border-bottom: 2px solid #fff;
+  color: #fff;
 }
 .about .form .contact-form input ~ span{
   position: absolute;
@@ -95,6 +101,8 @@
   margin: 20px;
   font-size: 17px;
   border-bottom: 2px solid white;
+  color: #fff;
+  padding: 8px;
 }
 .about .form .contact-form textarea ~ span
 {

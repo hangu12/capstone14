@@ -6,7 +6,7 @@ import Utils from "./utils";
 import LoginCtl from "./login_ctl";
 import { WS_HOST } from "./conf";
 
-export const ChatRoom = (props) => {
+export const ChatRoom = () => {
 
   let roomId = '';
   let myname = '';

@@ -73,10 +73,26 @@ export const About = (props) => {
         </form>
         <footer>
           <div className="media">
-              <li><i className="fa fa-facebook-square fa-2x" aria-hidden="true"></i></li>
-              <li><i className="fa fa-instagram fa-2x" aria-hidden="true"></i></li>
-              <li><i className="fa fa-whatsapp fa-2x" aria-hidden="true"></i></li>
-              <li><i className="fa fa-twitter-square fa-2x" aria-hidden="true"></i></li>
+              <li>
+                <a href="https://www.facebook.com/Kijiji.ca/" target="_blank">
+                  <i className="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/kijijicanada/" target="_blank">
+                  <i className="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.whatsapp.com/" target="_blank">
+                  <i className="fa fa-whatsapp fa-2x" aria-hidden="true"></i>
+                  </a>  
+                </li>
+              <li>
+                <a href="https://twitter.com/kijiji" target="_blank">
+                  <i className="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+                </a>
+              </li>
           </div>
           <div className="empty">
 

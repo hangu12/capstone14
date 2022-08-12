@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import API from "./api";
-import { API_BASE, CATEGORIES } from "./conf";
+import { API_BASE, CATEGORIES, CATEGORY_MAP } from "./conf";
 import ListItem from './ListItem'
 
 export const Items = (props) => {
@@ -29,28 +29,33 @@ export const Items = (props) => {
   }
 
   return (
-    <div className="items">
-      <div className="pd-tb">
-        <select onChange={ onCategoryChange } value={category} className="categories">
-          { 
-            CATEGORIES.map((category, idx) => (
-              <option  key={idx} value={category.value}>
-                { category.label }
-              </option>
+    <div className="wrapper">
+      <main>
+        <h1>Items - {CATEGORY_MAP[category]} </h1>
+        <div className="items">
+          <div className="pd-tb">
+            <select onChange={ onCategoryChange } value={category} className="categories">
+              { 
+                CATEGORIES.map((category, idx) => (
+                  <option  key={idx} value={category.value}>
+                    { category.label }
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+          <ul className="rsp-wrap">
+          {
+            items.map((item, idx) => (
+              <ListItem 
+                key={idx}
+                {...item}
+              />
             ))
           }
-        </select>
-      </div>
-      <ul className="rsp-wrap">
-      {
-        items.map((item, idx) => (
-          <ListItem 
-            key={idx}
-            {...item}
-          />
-        ))
-      }
-      </ul>
+          </ul>
+        </div>
+      </main>
     </div>   
   );
 }

@@ -6,7 +6,7 @@ import { API_BASE, CATEGORIES } from "./conf";
 import ListItem from './ListItem'
 import TheSwiper from "./TheSwiper";
 
-export const Home = (props) => {
+export const Home = () => {
 
   const [popItems, setPopItems] = useState([]);
   const [items1, setItems1] = useState([]);
@@ -79,88 +79,93 @@ export const Home = (props) => {
   }
 
   return (
-    <div className="home">
-      <div className="hero">
-        <h2>Highlight</h2>
-        <div className="hero-slide">
-          <TheSwiper 
-            slideElements={ slideElements() }
-          />
+    <div className="wrapper">
+      <main>
+        <h1>Home</h1>
+        <div className="home">
+          <div className="hero">
+            <h2>Highlight</h2>
+            <div className="hero-slide">
+              <TheSwiper 
+                slideElements={ slideElements() }
+              />
+            </div>
+          </div>   
+          <div className="items">
+            <h2>Popular</h2>
+            <ul className="rsp-wrap">
+            {
+              popItems.map((item, idx) => (
+                <ListItem 
+                  key={idx}
+                  {...item}
+                />
+              ))
+            }
+            </ul>
+          </div>   
+          <div className="tc mission">
+            <h2>Welcome</h2>
+            <div>
+              <p>Welcome to Joong Go, your virtual garage sale app,</p>
+              <p>the spot where thousands of families find incredible local deals</p>
+              <p>and earn extra spending money in a trusted 'neighbourly' environment.</p>
+            </div>  
+          </div>   
+          <div className="items">
+            <h2>{CATEGORIES[0].label}</h2>
+            <ul className="rsp-wrap">
+            {
+              items1.map((item, idx) => (
+                <ListItem 
+                  key={idx}
+                  {...item}
+                />
+              ))
+            }
+            </ul>
+          </div>   
+          <div className="items">
+            <h2>{CATEGORIES[1].label}</h2>
+            <ul className="rsp-wrap">
+            {
+              items2.map((item, idx) => (
+                <ListItem 
+                  key={idx}
+                  {...item}
+                />
+              ))
+            }
+            </ul>
+          </div>   
+          <div className="items">
+            <h2>{CATEGORIES[2].label}</h2>
+            <ul className="rsp-wrap">
+            {
+              items3.map((item, idx) => (
+                <ListItem 
+                  key={idx}
+                  {...item}
+                />
+              ))
+            }
+            </ul>
+          </div>   
+          <div className="items">
+            <h2>{CATEGORIES[3].label}</h2>
+            <ul className="rsp-wrap">
+            {
+              items4.map((item, idx) => (
+                <ListItem 
+                  key={idx}
+                  {...item}
+                />
+              ))
+            }
+            </ul>
+          </div>   
         </div>
-      </div>   
-      <div className="items">
-        <h2>Popular</h2>
-        <ul className="rsp-wrap">
-        {
-          popItems.map((item, idx) => (
-            <ListItem 
-              key={idx}
-              {...item}
-            />
-          ))
-        }
-        </ul>
-      </div>   
-      <div className="tc mission">
-        <h2>Welcome</h2>
-        <div>
-          <p>Welcome to Joong Go, your virtual garage sale app,</p>
-          <p>the spot where thousands of families find incredible local deals</p>
-          <p>and earn extra spending money in a trusted 'neighbourly' environment.</p>
-        </div>  
-      </div>   
-      <div className="items">
-        <h2>{CATEGORIES[0].label}</h2>
-        <ul className="rsp-wrap">
-        {
-          items1.map((item, idx) => (
-            <ListItem 
-              key={idx}
-              {...item}
-            />
-          ))
-        }
-        </ul>
-      </div>   
-      <div className="items">
-        <h2>{CATEGORIES[1].label}</h2>
-        <ul className="rsp-wrap">
-        {
-          items2.map((item, idx) => (
-            <ListItem 
-              key={idx}
-              {...item}
-            />
-          ))
-        }
-        </ul>
-      </div>   
-      <div className="items">
-        <h2>{CATEGORIES[2].label}</h2>
-        <ul className="rsp-wrap">
-        {
-          items3.map((item, idx) => (
-            <ListItem 
-              key={idx}
-              {...item}
-            />
-          ))
-        }
-        </ul>
-      </div>   
-      <div className="items">
-        <h2>{CATEGORIES[3].label}</h2>
-        <ul className="rsp-wrap">
-        {
-          items4.map((item, idx) => (
-            <ListItem 
-              key={idx}
-              {...item}
-            />
-          ))
-        }
-        </ul>
-      </div>   
+      </main>
     </div>
   );
 }

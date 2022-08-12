@@ -13,7 +13,7 @@ export const Item = (props) => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const user = LoginCtl.getUser();
-  console.log("token", user.accessToken);
+  
   const isMyItem = () => {
     if (!user) return false;
     if (!item) return false;
@@ -105,60 +105,65 @@ export const Item = (props) => {
 
 
   return (
-    <div className="item detail">
-      { item && 
-        <div className="rsp-wrap">
-          <div className="box">
-            <TheSwiper 
-              slideElements={ slideElements() }
-            />
-          </div>
-        <div className="box">
-          <div className="pd-tb">
-            <h1>{ item.name} </h1>
-          </div>
-          <div className="pd-tb category">
-            <p>{ CATEGORY_MAP[item.category]}</p>
-          </div>
-          <div className="pd-tb desc">
-            <p>{item.description}</p>
-          </div>
-          <div className="pd-tb seller">{ item.seller }</div>    
-          <div className="fl control">
-            <div className="price">${ item.price }</div>
-            { !isMyItem() && 
-              <div className="buttons">
-                <button onClick={ onWishBtnClick }>
-                  <FontAwesomeIcon icon={faHeart} className={wishClass()} />
-                </button>
+    <div className="wrapper">
+      <main>
+        <h1>Item Detail</h1>
+        <div className="item detail">
+          { item && 
+            <div className="rsp-wrap">
+              <div className="box">
+                <TheSwiper 
+                  slideElements={ slideElements() }
+                />
               </div>
-            }
-            
-          </div>  
-          <div className="mg-tb pd-tb">
-            { isMyItem() ? 
-              <>
-                <button onClick={ toggleAvailable } className={ `primary ${item.available ? 'orange' : 'green'}` }>
-                  { item.available ? 'Mark as Sold' : 'Mark as Available'}
-                </button>
-                <div className="pd-tb">
-                  <Link to={`/items/edit/${item._id}`}>
-                      Edit item
-                  </Link> 
-                </div>
-              </>
-              
-            :
-            <Link to="/chatrooms/1" className="msg-button">
-                Message to Seller
-            </Link> 
-            }
-            
-          </div>  
-        </div>
-      </div>
-      }
-    </div>   
+            <div className="box">
+              <div className="pd-tb">
+                <h1>{ item.name} </h1>
+              </div>
+              <div className="pd-tb category">
+                <p>{ CATEGORY_MAP[item.category]}</p>
+              </div>
+              <div className="pd-tb desc">
+                <p>{item.description}</p>
+              </div>
+              <div className="pd-tb seller">{ item.seller }</div>    
+              <div className="fl control">
+                <div className="price">${ item.price }</div>
+                { !isMyItem() && 
+                  <div className="buttons">
+                    <button onClick={ onWishBtnClick }>
+                      <FontAwesomeIcon icon={faHeart} className={wishClass()} />
+                    </button>
+                  </div>
+                }
+                
+              </div>  
+              <div className="mg-tb pd-tb">
+                { isMyItem() ? 
+                  <>
+                    <button onClick={ toggleAvailable } className={ `primary ${item.available ? 'orange' : 'green'}` }>
+                      { item.available ? 'Mark as Sold' : 'Mark as Available'}
+                    </button>
+                    <div className="pd-tb">
+                      <Link to={`/items/edit/${item._id}`}>
+                          Edit item
+                      </Link> 
+                    </div>
+                  </>
+                  
+                :
+                <Link to="/chatrooms/1" className="msg-button">
+                    Message to Seller
+                </Link> 
+                }
+                
+              </div>  
+            </div>
+          </div>
+          }
+        </div>   
+      </main>
+    </div>
   );
 }
 

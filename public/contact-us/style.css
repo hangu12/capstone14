@@ -75,6 +75,7 @@ section i{
     padding: 10px;
     font-size: 18px;
     border-bottom: 2px solid #fff;
+    color: #fff;
 }
 .form .contact-form input ~ span{
     position: absolute;

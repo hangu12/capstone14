@@ -12,10 +12,10 @@ export const WS_HOST = prod() ? 'wss://evening-spire-23810.herokuapp.com' : 'ws:
 export const CATEGORY_MAP = {
   "1": "Baby Items",
   "2": "Books",
-  "3": "Clothing",
+  "3": "Clothing & Accessories",
   "4": "Electronics",
   "5": "Home",
-  "6": "Vehicles"
+  "6": "Cars & Vehicles"
 };
 
 export const CATEGORIES = Object.entries(CATEGORY_MAP).map(([key, value]) => {

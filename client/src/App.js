@@ -50,10 +50,6 @@ function App() {
 
   const activeClass = () => menuActive ? 'active' : '';
 
-  const props = {
-    username: user ? user.username : ''
-  }
-
   return (
     <BrowserRouter>
       <div>
@@ -96,23 +92,21 @@ function App() {
             </ul>
           </div>
         </nav>
-        <div className="wrapper">
-          <main>
-            <Routes>
-              <Route path="/" element={ <Home {...props} /> } />
-              <Route path="user/sign_in" element={ <SignIn /> } />
-              <Route path="user/sign_up" element={ <SignUp /> } />
-              <Route path="items" element={ <Items /> } />
-              <Route path="items/new" element={ <ItemNew /> } />
-              <Route path="items/edit/:id" element={ <ItemEdit /> } />
-              <Route path="items/:id" element={ <Item /> } />
-              <Route path="about" element={ <About /> } />
-              <Route path="chatrooms/:id" element={ <ChatRoom {...props} /> } />
-              <Route path="my/items" element={ <MySellingItems /> } />
-              <Route path="my/home" element={ <MyHome /> } />
-              <Route path="my/wish" element={ <MyWishItems /> } />
-            </Routes>
-          </main>
+        <div>
+          <Routes>
+            <Route path="/" element={ <Home /> } />
+            <Route path="user/sign_in" element={ <SignIn /> } />
+            <Route path="user/sign_up" element={ <SignUp /> } />
+            <Route path="items" element={ <Items /> } />
+            <Route path="items/new" element={ <ItemNew /> } />
+            <Route path="items/edit/:id" element={ <ItemEdit /> } />
+            <Route path="items/:id" element={ <Item /> } />
+            <Route path="about" element={ <About /> } />
+            <Route path="chatrooms/:id" element={ <ChatRoom /> } />
+            <Route path="my/items" element={ <MySellingItems /> } />
+            <Route path="my/home" element={ <MyHome /> } />
+            <Route path="my/wish" element={ <MyWishItems /> } />
+          </Routes>
         </div>
       </div>
     </BrowserRouter>
