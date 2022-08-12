@@ -75,8 +75,9 @@ app = app.listen(PORT, () => console.log(`Listening 1111on ${PORT}`));
 const wss = new WebSocketServer({ server: app });
 
 wss.on('connection', function (ws) {
-
+  console.log('connectionconnectionconnectional');
   ws.on('message', function message(data, isBinary) {
+    console.log('messagemessagemessagel');
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(data, { binary: isBinary });

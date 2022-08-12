@@ -45,47 +45,24 @@
     <div id="messages"></div>
     <script>
       (function() {
-        const rss = document.getElementById('rss');
-        const heapTotal = document.getElementById('heapTotal');
-        const heapUsed = document.getElementById('heapUsed');
-        const external = document.getElementById('external');
-        // const ws = new WebSocket(`ws://localhost:8080`);
-        
         console.log("location", location);
-        // const wsOrigin = () => {
-        //   if (location.protocol == 'http:'){
-        //     return `ws://${location.hostname}:3000/echo`
-        //   }else {
-        //     return `wss://${location.hostname}:3000`
-        //   }
-        // }
-        // const url = wsOrigin();
         
-        let host = location.origin.replace(/^http/, 'ws')
+        // let host = location.origin.replace(/^http/, 'ws');
+        let host = 'ws://localhost:5000'
         console.log("w222s url ", host);
         const ws = new WebSocket(host);
         // const ws = new WebSocket(`ws://${wsHost()}`);
 
         ws.onmessage = function(event) {
           console.log("onmessageonmessage", event);
-          // const data = JSON.parse(event.data);
 
           document.getElementById('messages').insertAdjacentText("beforeend", event.data);
-          
-          // rss.textContent = data.rss;
-          // heapTotal.textContent = data.heapTotal;
-          // heapUsed.textContent = data.heapUsed;
-          // external.textContent = data.external;
         };
 
         ws.onopen = function (event){
           console.log("onopenonopenevent", event );
           ws.send('open something');
         };
-
-        // ws.on('message', function message(data) {
-        //   console.log('received: %s', data);
-        // });
 
 
         document.getElementById('msg').addEventListener("keyup", function(){
