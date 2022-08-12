@@ -15,10 +15,29 @@ const format = (d) => {
   return d.toLocaleTimeString("en-us", options);
 }
 
+const elipsised = (str, limit) => {
+  if(!str){
+    return '';
+  }
+
+  if (str.length <= limit){
+    return str;
+  }
+
+  return  `${str.substring(0, limit)}...`;
+}
+
+const delimiter = (price) => {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
 
 const Utils = {
   now: now,
-  format: format
+  format: format,
+  elipsised: elipsised,
+  delimiter: delimiter
 }
 
 export default Utils;

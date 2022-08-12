@@ -7,6 +7,7 @@ import TheSwiper from "./TheSwiper";
 import ItemImage from "./ItemImage";
 import API from "./api";
 import LoginCtl from "./login_ctl";
+import Utils from "./utils";
 import { API_BASE, CATEGORY_MAP } from "./conf";
 
 export const Item = (props) => {
@@ -103,12 +104,11 @@ export const Item = (props) => {
     ))
   }
 
-
   return (
     <div className="wrapper">
       <main>
-        <h1>Item Detail</h1>
         <div className="item detail">
+          <h1>Item Detail</h1>
           { item && 
             <div className="rsp-wrap">
               <div className="box">
@@ -128,7 +128,7 @@ export const Item = (props) => {
               </div>
               <div className="pd-tb seller">{ item.seller }</div>    
               <div className="fl control">
-                <div className="price">${ item.price }</div>
+                <div className="price">${ Utils.delimiter(item.price) }</div>
                 { !isMyItem() && 
                   <div className="buttons">
                     <button onClick={ onWishBtnClick }>

@@ -13,6 +13,8 @@ export const Home = () => {
   const [items2, setItems2] = useState([]);
   const [items3, setItems3] = useState([]);
   const [items4, setItems4] = useState([]);
+  const [items5, setItems5] = useState([]);
+  const [items6, setItems6] = useState([]);
 
   useEffect(() => {
 
@@ -22,7 +24,7 @@ export const Home = () => {
     })
 
     CATEGORIES.map(c => {
-      let url = `${API_BASE}/product?category=${c.value}`;
+      let url = `${API_BASE}/product?category=${c.value}&limit=4`;
       API.get(url)
       .then((data) => {
 
@@ -38,6 +40,12 @@ export const Home = () => {
             break;
           case "4":
             setItems4(data);
+            break;
+          case "5":
+            setItems5(data);
+            break;
+          case "6":
+            setItems6(data);
             break;
         }
       });
@@ -113,7 +121,12 @@ export const Home = () => {
             </div>  
           </div>   
           <div className="items">
-            <h2>{CATEGORIES[0].label}</h2>
+            <div className="fl">
+              <h2>{CATEGORIES[0].label}</h2>
+              <Link to="/items?category=1" className="org"  >
+                  More items
+              </Link>
+            </div>
             <ul className="rsp-wrap">
             {
               items1.map((item, idx) => (
@@ -126,7 +139,12 @@ export const Home = () => {
             </ul>
           </div>   
           <div className="items">
-            <h2>{CATEGORIES[1].label}</h2>
+          <div className="fl">
+              <h2>{CATEGORIES[1].label}</h2>
+              <Link to="/items?category=2" className="org"  >
+                  More items
+              </Link>
+            </div>
             <ul className="rsp-wrap">
             {
               items2.map((item, idx) => (
@@ -139,7 +157,12 @@ export const Home = () => {
             </ul>
           </div>   
           <div className="items">
-            <h2>{CATEGORIES[2].label}</h2>
+          <div className="fl">
+              <h2>{CATEGORIES[2].label}</h2>
+              <Link to="/items?category=3" className="org"  >
+                  More items
+              </Link>
+            </div>
             <ul className="rsp-wrap">
             {
               items3.map((item, idx) => (
@@ -152,10 +175,51 @@ export const Home = () => {
             </ul>
           </div>   
           <div className="items">
-            <h2>{CATEGORIES[3].label}</h2>
+          <div className="fl">
+              <h2>{CATEGORIES[3].label}</h2>
+              <Link to="/items?category=4" className="org"  >
+                  More items
+              </Link>
+            </div>
             <ul className="rsp-wrap">
             {
               items4.map((item, idx) => (
+                <ListItem 
+                  key={idx}
+                  {...item}
+                />
+              ))
+            }
+            </ul>
+          </div>   
+          <div className="items">
+            <div className="fl">
+              <h2>{CATEGORIES[4].label}</h2>
+              <Link to="/items?category=5" className="org"  >
+                  More items
+              </Link>
+            </div>
+            <ul className="rsp-wrap">
+            {
+              items5.map((item, idx) => (
+                <ListItem 
+                  key={idx}
+                  {...item}
+                />
+              ))
+            }
+            </ul>
+          </div>   
+          <div className="items">
+            <div className="fl">
+              <h2>{CATEGORIES[5].label}</h2>
+              <Link to="/items?category=6" className="org"  >
+                  More items
+              </Link>
+            </div>
+            <ul className="rsp-wrap">
+            {
+              items6.map((item, idx) => (
                 <ListItem 
                   key={idx}
                   {...item}

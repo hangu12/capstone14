@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import ItemImage from "./ItemImage";
+import Utils from "./utils";
 
 export const ListItem = (props) => {
 
@@ -35,7 +36,7 @@ export const ListItem = (props) => {
           <h3 className="ellips">{props.name}</h3>
           <p className="desc ellips">{props.description}</p>
           <div className="fl">
-            <div className="price">$ {props.price}</div>
+            <div className="price">$ {Utils.delimiter(props.price)}</div>
           </div>
         </div>    
       </Link>
