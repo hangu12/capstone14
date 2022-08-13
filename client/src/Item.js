@@ -39,6 +39,7 @@ export const Item = (props) => {
         price: data.price,
         images: data.images.map(i => i.src),
         description: data.description,
+        userId: data.userId,
         seller: data.seller,
         available: data.available,
         wish: data.wished
@@ -152,7 +153,7 @@ export const Item = (props) => {
                   </>
                   
                 :
-                <Link to="/chatrooms/1" className="msg-button">
+                <Link to={`/chatrooms/${item.userId}`} className="msg-button">
                     Message to Seller
                 </Link> 
                 }
