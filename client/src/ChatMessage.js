@@ -7,8 +7,8 @@ export const ChatMessage = (props) => {
     <li className={`chat-message-wrap ${meClass()}`}>
       <div className="chat-message">
         <div className="fl">
-          <p className="desc">{ props.user }</p>
-          <p className="desc sm">{ props.created_at}</p>
+          <p className="desc">{ props.userName }</p>
+          <p className="desc sm">{ props.createdAt}</p>
         </div>
         <div className="content">
           <p>{ props.content}</p>

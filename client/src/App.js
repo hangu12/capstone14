@@ -102,7 +102,7 @@ function App() {
             <Route path="items/edit/:id" element={ <ItemEdit /> } />
             <Route path="items/:id" element={ <Item /> } />
             <Route path="about" element={ <About /> } />
-            <Route path="chatrooms/:id" element={ <ChatRoom /> } />
+            <Route path="chatrooms/:userId" element={ <ChatRoom /> } />
             <Route path="my/items" element={ <MySellingItems /> } />
             <Route path="my/home" element={ <MyHome /> } />
             <Route path="my/wish" element={ <MyWishItems /> } />

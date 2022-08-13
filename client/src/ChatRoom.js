@@ -1,51 +1,81 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import ChatMessage from "./ChatMessage";
 import Utils from "./utils";
 import LoginCtl from "./login_ctl";
 import { WS_HOST } from "./conf";
+import API from "./api";
+import { API_BASE, CATEGORIES, CATEGORY_MAP } from "./conf";
 
 export const ChatRoom = () => {
+  const { userId } = useParams();  // chat partner id
 
-  let roomId = '';
-  let myname = '';
+  let myId = '';
+  let myName = '';
   const user = LoginCtl.getUser();
   if (user){
-    roomId = '090';
-    // roomId = user._id;
-    myname = user.username;
+    myId = user._id;
+    myName = user.username;
   }
 
   const [socketUrl, setSocketUrl] = useState(WS_HOST);
+  const [partnerName, setPartnerName] = useState(null);
+  const [roomId, setRoomId] = useState(null);
   const [messages, setMessages] = useState([]);
 
   const { sendJsonMessage, lastMessage, readyState } = useWebSocket(socketUrl);
 
   useEffect(() => {
+    let url = `${API_BASE}/chatrooms/${userId}`;
+    API.get(url)
+    .then((data) => {
+      
+      setRoomId(data.roomId);
+      const partnerName = data.participants.filter(p => p.username != myName)[0].username;
+      setPartnerName(partnerName);
+      
+      setMessages(data.messages.map(m => { 
+        return {
+          ...m,
+          ...{ me: (m.userId == myId) }
+        }
+      }));
+
+      handleInitialMessage(data.roomId);
+    });
+  
+    return () => {
+    }
+  }, [])
+
+  useEffect(() => {
     if (lastMessage !== null) {
       const json = JSON.parse(lastMessage.data);
       if (json.type == 'init'){
+        console.log("got lastMessagelastMessage init ");
         return;
       }
-      const { username, msg } = json;
+      console.log("got lastMessagelastMessage", json);
+      const { userId, userName, content } = json;
 
       setMessages((prev) => {
         return prev.concat({
-          user: username,
-          me: (username == myname),
-          content: msg,
-          created_at: Utils.now()
+          userName: userName,
+          me: (userId == myId),
+          content: content,
+          createdAt: Utils.now()
         })
       });
     }
-  }, [lastMessage, setMessages, myname]);
+  }, [lastMessage, setMessages, myId, myName]);
 
   const handleSendMessage = useCallback((curMessage) => {
-    sendJsonMessage({ roomId: roomId, username: myname, msg: curMessage })
-  }, [curMessage]);
+    sendJsonMessage({ roomId: roomId, userId: myId, userName: myName, content: curMessage })
+  }, [roomId, curMessage]);
 
-  const handleInitialMessage = useCallback(() => {
+  const handleInitialMessage = useCallback((roomId) => {
     sendJsonMessage({ roomId: roomId, type: 'init' })
   }, [roomId]);
 
@@ -59,44 +89,27 @@ export const ChatRoom = () => {
 
   const [curMessage, setCurMessage] = useState('');
 
-  useEffect(() => {
-    handleInitialMessage();
-  }, [roomId] )
-  useEffect(() => {
 
-    // setMessages([
-    //   {
-    //     user: 'hangu',
-    //     me: true,
-    //     content: "Hello, I'm interested in your trek bike",
-    //     created_at: '2022-07-30 2:00 pm'
-    //   },
-    //   {
-    //     user: 'baljit',
-    //     content: "Sure, it's available.",
-    //     created_at: '2022-07-30 2:10 pm'
-    //   },
-    //   {
-    //     user: 'hangu',
-    //     me: true,
-    //     content: "Okay, can we meet today?",
-    //     created_at: '2022-07-30 2:20 pm'
-    //   }
-    // ])
+  const createMessage = (curMessage) => {
+    console.log("createMessage");
 
-    return () => {
-      console.log("ChatRoom unmounted");
-    }
-  }, [])
+    const url = `${API_BASE}/chatrooms/${roomId}`;
+    API.post(url, { roomId: roomId, userId: myId, userName: myName, content: curMessage })
+    .then((data) => {
+      if (data.error){
+        console.log("errr", data.error);
+        return;
+      }
 
-  const loadMessages = () => {
-    console.log("loadMessages");
+      console.log("dataaaa", data);
+    });
   }
 
   const onEnterKeyUp = (e) => {
     e.preventDefault();
     if (e.key == "Enter"){
       handleSendMessage(curMessage);
+      createMessage(curMessage);
       setCurMessage('');
     }
     
@@ -105,18 +118,7 @@ export const ChatRoom = () => {
   return (
     <div className="chatroom">
       <div className="chatroom-info">
-        Baljit
-      </div>
-      <div className="controls">
-        {/*
-        <div className="btn-load-wrap"> 
-          <button 
-            className="control btn-load"
-            onClick={ loadMessages }>
-              Load more messages
-          </button>
-        </div>
-         */}
+        { partnerName }
       </div>
       <ul className="messages">
       {
