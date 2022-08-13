@@ -29,6 +29,7 @@ export const ItemForm = (props) => {
       formData.append('images', imageFile);
     });
 
+    formData.append('userId', user._id)
     formData.append('seller', user.username)
     formData.append('name', name)
     formData.append('category', category)

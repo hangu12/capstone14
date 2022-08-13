@@ -28,6 +28,7 @@ import SignUp from './SignUp';
 import MyHome from './MyHome';
 import LoginCtl from './login_ctl';
 import MyWishItems from './MyWishItems';
+import MyMessages from './MyMessages';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -106,6 +107,7 @@ function App() {
             <Route path="my/items" element={ <MySellingItems /> } />
             <Route path="my/home" element={ <MyHome /> } />
             <Route path="my/wish" element={ <MyWishItems /> } />
+            <Route path="my/messages" element={ <MyMessages /> } />
           </Routes>
         </div>
       </div>
