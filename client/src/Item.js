@@ -100,6 +100,7 @@ export const Item = (props) => {
         <ItemImage 
           available={item.available}
           imgSrc={img}
+          alt={item.name}
         />
       </div>
     ))

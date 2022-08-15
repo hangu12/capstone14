@@ -31,6 +31,7 @@ export const ListItem = (props) => {
         <ItemImage 
           available={props.available}
           imgSrc={imgSrc()}
+          alt={props.name}
         />
         <div className="pd-tb">
           <h3 className="ellips">{props.name}</h3>

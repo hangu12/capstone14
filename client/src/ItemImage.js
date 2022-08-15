@@ -12,7 +12,7 @@ export const ItemImage = (props) => {
       <div className={`availability ${availabilityClass()}`}>
         <p>{props.available ? 'Available' : 'Sold'}</p>
       </div>
-      <img src={props.imgSrc} className="square" />
+      <img src={props.imgSrc} className="square" alt={props.alt} />
     </div> 
   );
 }
